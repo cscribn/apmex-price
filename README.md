@@ -1,7 +1,7 @@
 # apmex-price
 Get gold/silver spot, buy, and sell prices using apmex.com.
 
-This program takes a CSV file, with header row, as input.  The column values should be the APMEX URL of the precious metal, the ounces of metal, and whether the metal is gold or silver.  The program will output CSV lines whose values are the APMEX URL of the precious metal, the ounces of metal, and whether the metal is gold or silver, your sell price, the APMEX spot price, the APMEX buy price, and the APMEX sell price.  Your sell price is either the APMEX buy price, or the spot price if the buy price is not available.  This program relies on CSS paths of the apmex.com website, and will therefore need to be updated whenever the site design changes.
+This program takes a CSV file, with header row, as input.  The column values should be the APMEX URL of the precious metal, the ounces of metal, and whether the metal is gold or silver.  The program will output CSV lines whose values are the APMEX URL of the precious metal, the ounces of metal, whether the metal is gold or silver, your sell price, the APMEX spot price, the APMEX buy price, and the APMEX sell price.  Your sell price is either the APMEX buy price, or the spot price if the buy price is not available.  This program relies on CSS paths of the apmex.com website, and will therefore need to be updated whenever the site design changes.
 
 # Usage
 <pre>ruby apmex-price.rb &lt;input_file&gt;</pre>
