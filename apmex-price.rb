@@ -4,10 +4,10 @@ require 'nokogiri'
 require 'open-uri'
 
 APMEX_URL = 'http://www.apmex.com'
-GOLD_CSS = 'body > main > div > div.page-content-sidebar > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(2) > span'
-SILVER_CSS = 'body > main > div > div.page-content-sidebar > div:nth-child(3) > table > tbody > tr:nth-child(2) > td:nth-child(2) > span'
-BUY_CSS = 'body > main > div:nth-child(1) > div.page-content-sidebar > div > div.content-block.content-section.product-collateral > div.product-buy-price > h4 > a'
-PRICE_CSS = 'body > main > div:nth-child(1) > div.page-content-sidebar > div > div:nth-child(3) > div:nth-child(3) > table > tbody > tr:nth-child(1) > td:nth-child(2)'
+GOLD_CSS = 'table.table-spot-prices > tbody > tr:nth-child(1) > td:nth-child(2) > span'
+SILVER_CSS = 'table.table-spot-prices > tbody > tr:nth-child(2) > td:nth-child(2) > span'
+BUY_CSS = 'div.product-buy-price > h4 > a'
+PRICE_CSS = 'table.table-volume-pricing > tbody > tr:nth-child(1) > td:nth-child(2)'
 
 if ARGV.length != 1 then
   puts "Usage: ruby apmex-price.rb <input_file>"
