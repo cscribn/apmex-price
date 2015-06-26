@@ -9,6 +9,14 @@ SILVER_CSS = 'table.table-spot-prices > tbody > tr:nth-child(2) > td:nth-child(2
 BUY_CSS = 'div.product-buy-price > h4 > a'
 PRICE_CSS = 'table.table-volume-pricing > tbody > tr:nth-child(1) > td:nth-child(2)'
 
+URL_COLUMN = 0
+OUNCES_COLUMN = 1
+METAL_COLUMN = 2
+SELL_PRICE_COLUMN = 3
+APMEX_SPOT_PRICE_COLUMN = 4
+APMEX_BUY_PRICE_COLUMN = 5
+APMEX_SELL_PRICE_COLUMN = 6
+
 if ARGV.length != 1 then
   puts "Usage: ruby apmex-price.rb <input_file>"
 	exit
@@ -39,24 +47,24 @@ end
 
 # Get prices
 CSV.foreach(ARGV[0], :headers => true) do |row|
-	if row[2] == 'Gold'
-		row[4] = gold_spot * row[1].to_f
+	if row[METAL_COLUMN] == 'Gold'
+		row[APMEX_SPOT_PRICE_COLUMN] = gold_spot * row[OUNCES_COLUMN].to_f
 	else
-		row[4] = silver_spot * row[1].to_f
+		row[APMEX_SPOT_PRICE_COLUMN] = silver_spot * row[OUNCES_COLUMN].to_f
 	end
 	
-	row[3] = row[4]
-	page = Nokogiri::HTML(open(row[0]))
+	row[SELL_PRICE_COLUMN] = row[APMEX_SPOT_PRICE_COLUMN]
+	page = Nokogiri::HTML(open(row[URL_COLUMN]))
 	
 	# Get buy price
 	buy_link = page.css(BUY_CSS)
 	buy_match = /(\d*,*\d+\.\d+)/.match(buy_link.text)
 	
 	if buy_match != nil
-		row[5] = buy_match[1].gsub(',', '').to_f
-		row[3] = row[5]
+		row[APMEX_BUY_PRICE_COLUMN] = buy_match[1].gsub(',', '').to_f
+		row[SELL_PRICE_COLUMN] = row[APMEX_BUY_PRICE_COLUMN]
 	else
-		row[5] = 0.0
+		row[APMEX_BUY_PRICE_COLUMN] = 0.0
 	end
 	
 	# Get sell price
@@ -64,9 +72,9 @@ CSV.foreach(ARGV[0], :headers => true) do |row|
 	price_match = /(\d*,*\d+\.\d+)/.match(price_td.text)
 	
 	if price_match != nil
-		row[6] = price_match[1].gsub(',', '').to_f
+		row[APMEX_SELL_PRICE_COLUMN] = price_match[1].gsub(',', '').to_f
 	else
-		row[6] = 0.0
+		row[APMEX_SELL_PRICE_COLUMN] = 0.0
 	end
 	
 	puts row
