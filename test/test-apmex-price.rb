@@ -72,6 +72,9 @@ class ApmexPriceTest < Minitest::Unit::TestCase
 			a = ApmexPrice.new(u)
 			puts a.to_s
 			assert a.current_value.is_a? Float
+			assert a.spot.is_a? Float
+			assert a.buy.is_a? Float
+			assert a.sell.is_a? Float
 		end	
 	end
 end

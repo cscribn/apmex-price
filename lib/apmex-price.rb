@@ -53,6 +53,7 @@ class ApmexPrice
 		end			
 	end
 	
+	# Aid in creating CSV files
 	def to_s
 		@current_value.to_s + ',' + @spot.to_s + ',' + @buy.to_s + ',' + @sell.to_s
 	end	
