@@ -3,11 +3,13 @@ require 'nokogiri'
 require 'open-uri'
 
 class ApmexPrice
-	attr_accessor :url, :page, :spot, :ounces_spot, :buy, :sell, :current_value
+	attr_accessor :url, :page, :spot, :ounces_spot, :buy, :sell, :value
 	
 	DOLLARS_REGEX = /(\d*,*\d+\.\d+)/
 	OUNCES_REGEX = /(\d*,*\d+\.?\d*)/
+	OUNCES_LABEL_CSS = 'div.product-specs > table > tbody > tr:nth-child(7) > th'
 	OUNCES_CSS = 'div.product-specs > table > tbody > tr:nth-child(7) > td'
+	OUNCES2_CSS = 'div.product-specs > table > tbody > tr:nth-child(6) > td'
 	SPOT_CSS = 'span.item-bid'
 	BUY_CSS = 'div.product-buy-price > h4 > a'
 	SELL_CSS = 'table.table-volume-pricing > tbody > tr:nth-child(1) > td:nth-child(2)'
@@ -21,8 +23,13 @@ class ApmexPrice
 	def match
 		@page = Nokogiri::HTML(open(@url))
 		
-		# Get ounces
-		ounces_text = @page.css(OUNCES_CSS).text
+		# Get ounces.  They are usually the 7th child, but there is at least one case for which they are the 6th.
+		if @page.css(OUNCES_LABEL_CSS).text == 'Metal Content:'
+			ounces_text = @page.css(OUNCES_CSS).text
+		else
+			ounces_text = @page.css(OUNCES2_CSS).text
+		end
+			
 		ounces_match = OUNCES_REGEX.match(ounces_text)
 		@ounces = ounces_match[0].to_f
 		
@@ -36,9 +43,9 @@ class ApmexPrice
 		@ounces_spot = @spot * @ounces
 		
 		if @buy != 0.0
-			@current_value = @buy
+			@value = @buy
 		else
-			@current_value = @ounces_spot
+			@value = @ounces_spot
 		end
 	end
 	
@@ -55,6 +62,6 @@ class ApmexPrice
 	
 	# Aid in creating CSV files
 	def to_s
-		@current_value.to_s + ',' + @spot.to_s + ',' + @buy.to_s + ',' + @sell.to_s
+		@value.to_s + ',' + @ounces_spot.to_s + ',' + @buy.to_s + ',' + @sell.to_s
 	end	
 end
