@@ -1,8 +1,8 @@
 require 'minitest/autorun'
 require 'apmex-price'
 
-class ApmexPriceTest < Minitest::Unit::TestCase
-	def test
+class ApmexPriceTest < Minitest::Test
+	def test_
 		apmex_urls = [
 			'http://www.apmex.com/product/3/1-4-oz-gold-american-eagle-random-year',
 			'http://www.apmex.com/product/1/1-oz-gold-american-eagle-random-year',
