@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require 'apmex-price'
+require_relative '../lib/apmex-price'
 
 class ApmexPriceTest < Minitest::Test
 	def test_
