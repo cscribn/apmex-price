@@ -41,7 +41,7 @@ class ApmexPrice
 	def calculate
 		@ounces_spot = (@spot * @ounces).round(2)
 		
-		if @buy != 0.0
+		if @buy > @ounces_spot
 			@value = @buy
 		else
 			@value = @ounces_spot
