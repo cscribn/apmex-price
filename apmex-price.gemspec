@@ -1,9 +1,9 @@
 Gem::Specification.new do |s|
   s.name        = 'apmex-price'
-  s.version     = '1.0.2'
-  s.date        = '2015-12-09'
-  s.summary     = 'Get spot, buy, sell, and value prices of precious metals using apmex.com URLs.'
-  s.description = 'Do you own precious metals? Are you interested in getting the current value of your collection? If so, this gem is for you. Simply find the URL of a product you are interested in, pass it as an argument, and you will get back the spot, buy, sell, and value price. The value is either the APMEX buy price or the spot price if the buy price is not available. This program relies on CSS paths of the apmex.com website, and will therefore need to be updated whenever the site design changes.'
+  s.version     = '1.1.0'
+  s.date        = '2016-02-01'
+  s.summary     = 'Get buy price of precious metals using apmex.com URLs.'
+  s.description = 'Do you own precious metals?  Are you interested in getting the current value of your collection?  If so, this gem is for you.  Simply find the URL of a product you are interested in, pass it as an argument, and you will get back the Apmex buy price.  This program relies on CSS paths of the apmex.com website, and will therefore need to be updated whenever the site design changes.'
   s.authors     = ['cscribn']
   s.files       = ['lib/apmex-price.rb', 'test/test-apmex-price.rb']
   s.homepage    =
