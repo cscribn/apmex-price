@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'apmex-price'
-  s.version     = '1.1.0'
-  s.date        = '2016-02-01'
+  s.version     = '1.2.0'
+  s.date        = '2018-03-09'
   s.summary     = 'Get buy price of precious metals using apmex.com URLs.'
   s.description = 'Do you own precious metals?  Are you interested in getting the current value of your collection?  If so, this gem is for you.  Simply find the URL of a product you are interested in, pass it as an argument, and you will get back the Apmex buy price.  This program relies on CSS paths of the apmex.com website, and will therefore need to be updated whenever the site design changes.'
   s.authors     = ['cscribn']
