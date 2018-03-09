@@ -14,7 +14,7 @@ class ApmexPriceTest < Minitest::Test
             'http://www.apmex.com/sell-to-us/54875',
             'http://www.apmex.com/sell-to-us/54875',
             'http://www.apmex.com/sell-to-us/84445',
-            'http://www.apmex.com/sell-to-us/79047',
+            'http://www.apmex.com/sell-to-us/4233',
             'http://www.apmex.com/sell-to-us/79021',
             'http://www.apmex.com/sell-to-us/71264',
             'http://www.apmex.com/sell-to-us/79041',
