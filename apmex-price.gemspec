@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.homepage    =
     'http://rubygems.org/gems/apmex-price'
   s.license       = 'MIT'
-	s.add_development_dependency 'minitest', '~> 0'
-	s.add_runtime_dependency 'nokogiri', '~> 0'
+	s.add_development_dependency 'minitest', '~>0'
+	s.add_runtime_dependency 'nokogiri', '>=1.8.1'
 end
